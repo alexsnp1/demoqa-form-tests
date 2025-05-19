@@ -25,7 +25,7 @@ public class AutomationPracticeForm extends TestBase {
 
             //просто обычные поля
             $("#firstName").setValue("Alex");
-            $("#lastName").setValue("Mььь");
+            $("#lastName").setValue("M");
             $("#userEmail").setValue("myemail@mail.com");
 
             //чек-бокс
