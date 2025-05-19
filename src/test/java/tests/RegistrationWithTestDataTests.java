@@ -1,34 +1,41 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static org.openqa.selenium.remote.tracing.EventAttribute.setValue;
+import static tests.TestData.*;
 
-public class AutomationPracticeForm extends TestBase {
+public class RegistrationWithTestDataTests extends TestBase {
+    //String firstName = "Alex",
+   //        lastName = "May",
+     //     userEmail = "email@mail.com";
 
     //@BeforeAll
-   // static void beforeAll() {
+    //static void beforeAll() {
         //Configuration.browserSize = "1600x900";
-       // Configuration.baseUrl = "https://demoqa.com";
+        //Configuration.baseUrl = "https://demoqa.com";
         //Configuration.pageLoadStrategy = "eager"; //при долгой загрузке не падает тест
         //Configuration.holdBrowserOpen = true; //не закрывается браузер
 
         @Test
-        void fillFormTest() {
+        void fillFormTest () {
+
+            //String firstName = "Alex",
+             //       lastName = "May",
+              //      userEmail = "email@mail.com";
+
+
             open("/automation-practice-form");
             //убирает рекламу
             executeJavaScript("$('#fixedban').remove()");
             executeJavaScript("$('footer').remove()");
 
             //просто обычные поля
-            $("#firstName").setValue("Alex");
-            $("#lastName").setValue("M");
-            $("#userEmail").setValue("myemail@mail.com");
+            $("#firstName").setValue(firstName);
+            $("#lastName").setValue(lastName);
+            $("#userEmail").setValue(userEmail);
 
             //чек-бокс
             $("#genterWrapper").$(byText("Male")).click();
@@ -65,8 +72,8 @@ public class AutomationPracticeForm extends TestBase {
             $("#submit").click();
 
             //проверяем значения
-            $(".modal-content").shouldHave(text("Student Name Alex M"));
-            $(".modal-content").shouldHave(text("Student Email myemail@mail.com"));
+            $(".modal-content").shouldHave(text("Student Name " + firstName + " " + lastName));
+            $(".modal-content").shouldHave(text("Student Email " + userEmail));
             $(".modal-content").shouldHave(text("Gender Male"));
             $(".modal-content").shouldHave(text("Mobile 7999111339"));
             $(".modal-content").shouldHave(text("Date of Birth 03 September,2010"));
